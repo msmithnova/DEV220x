@@ -1,11 +1,29 @@
 app.controller('labController', [
-    '$scope', '$timeout', '$q',
-    function ($scope, $timeout, $q) {
+    '$scope', '$timeout', '$q', '$http',
+    function ($scope, $timeout, $q, $http) {
         $scope.model = {
             number: 0,
             result: 'Ready'
         };
         $scope.checkOddNumber = checkOddNumber;
+        $scope.getRepos = getRepos;
+        $scope.loadDetail = loadDetail;
+        function getRepos() {
+            $http.get('https://api.github.com/orgs/angular/repos')
+            .then(function(response) {
+                $scope.model.repos = response.data;
+            }, function(response) {
+                $scope.model.repos = 'Error: ' + repsonse.data.message;
+            });
+        }
+        function loadDetail(name) {
+            var url = 'https://api.github.com/repos/angular/' + name;
+            $http.get(url).then(function(response) {
+                $scope.model.detail = response.data;
+            }, function(response) {
+                $scope.model.detail = {error: true, message: 'Error: ' + response.data.message};
+            });
+        }
         function checkOddNumber(input) {
             $scope.model.result = 'Working...';
             checkOddNumberHandler(input).then(function(result) {
