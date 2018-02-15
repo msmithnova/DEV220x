@@ -3,17 +3,18 @@ app.controller('labController', [
     function ($scope, $timeout, $q, $http, gitHub) {
         $scope.model = {
             number: 0,
-            result: 'Ready'
+            result: 'Ready',
+            search: ''
         };
         $scope.checkOddNumber = checkOddNumber;
         $scope.getRepos = getRepos;
         $scope.loadDetail = loadDetail;
         function getRepos() {
-            $scope.model.repos = gitHub.getAll();
+            $scope.model.repos = gitHub.getAll({org: $scope.model.search});
         }
         function loadDetail(name) {
             $scope.model.detail = null;
-            $scope.model.detail = gitHub.getDetail({id: name});
+            $scope.model.detail = gitHub.getDetail({org: $scope.model.search, id: name});
         }
         function checkOddNumber(input) {
             $scope.model.result = 'Working...';
