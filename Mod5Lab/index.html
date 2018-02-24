@@ -87,7 +87,7 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-5">
                     <input type="submit" value="Submit" class="btn btn-primary" ng-click="submit(model)" ng-disabled="form.$invalid" />
-                    <button class="btn btn-default">Reset</button>
+                    <button class="btn btn-default" ng-click="reset()">Reset</button>
                 </div>
             </div>
         </form>
@@ -95,6 +95,8 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular-resource.min.js"></script>
+    <script src="./app/registrationService.js"></script>
     <script src="./app/app.js"></script>
     <script src="./app/labController.js"></script>
 </body>
