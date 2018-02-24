@@ -6,5 +6,9 @@ app.controller('labController', [
         function reset() {
             $scope.model = {};
         }
+        $scope.submit = submit;
+        function submit(model) {
+            alert('Submitted\n' + JSON.stringify(model));
+        }
     }
 ]);
