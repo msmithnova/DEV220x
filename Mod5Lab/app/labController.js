@@ -3,6 +3,7 @@ app.controller('labController', [
     function ($scope, registration) {
         $scope.reset = reset;
         $scope.submit = submit;
+        $scope.registered = false;
 
         reset();
 
@@ -13,7 +14,9 @@ app.controller('labController', [
         function submit(model) {
             registration.submit(model).$promise
                 .then(function (response) {
-                    alert('success');
+                    alert('Success. Token is: ' + response.token);
+                    reset();
+                    $scope.registered = true;
                 },
                 function (response) {
                     alert('error');
