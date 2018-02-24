@@ -22,7 +22,7 @@ app.controller('labController', [
                 $scope.model.result = 'Success: ' + result;
             }, function(result) {
                 $scope.model.result = 'Error: ' + result;
-            })
+            });
         }
         function checkOddNumberHandler(input) {
             var defer = $q.defer();
